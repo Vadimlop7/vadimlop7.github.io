@@ -99,6 +99,26 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
         background-color: #005ed6;
       }
 
+      /* Кнопка «Назад на главную»: меньше и серая */
+      .back-button {
+        display: block;
+        width: 100%;
+        max-width: 260px;
+        margin: 4px auto 0;
+        padding: 10px 16px;
+        background-color: #9e9e9e;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .back-button:hover {
+        background-color: #7d7d7d;
+      }
+
       .note {
         text-align: center;
         font-size: 14px;
@@ -166,6 +186,8 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
    onclick="_tmr.push({ type: 'reachGoal', id: 3818642, goal: 'kwork_click' });">
    Перейти на Кворк.ру и заказать
 </a>
+
+      <a class="back-button" href="index.html">Назад на главную</a>
 
       
 
