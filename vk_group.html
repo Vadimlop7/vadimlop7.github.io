@@ -117,10 +117,11 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
         background-color: #7d7d7d;
       }
 
-      /* Галерея примеров: во всю ширину экрана, максимум 1600px на компьютере */
+      /* Галерея примеров: вне контейнера, во всю ширину экрана,
+         максимум 1600px на компьютере */
       .gallery {
         max-width: 1600px;
-        margin: 28px auto 0;
+        margin: 28px auto 20px;
         padding: 0;
       }
 
@@ -129,6 +130,10 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
         width: 100%;
         height: auto;
         margin-bottom: 20px; /* отступ между картинками */
+      }
+
+      .gallery img:last-child {
+        margin-bottom: 0; /* последней картинке отступ не нужен — есть у блока цены */
       }
 
       .note {
@@ -197,17 +202,22 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
         </li>
       </ul>
 
-      <!-- Галерея примеров работ: 8 изображений из папки images -->
-      <div class="gallery">
-        <img src="images/1.png" alt="Пример работы 1">
-        <img src="images/2.png" alt="Пример работы 2">
-        <img src="images/3.png" alt="Пример работы 3">
-        <img src="images/4.png" alt="Пример работы 4">
-        <img src="images/5.png" alt="Пример работы 5">
-        <img src="images/6.png" alt="Пример работы 6">
-        <img src="images/7.png" alt="Пример работы 7">
-        <img src="images/8.png" alt="Пример работы 8">
-      </div>
+    </div><!-- /container — закрываем, чтобы галерея вышла из узкого блока -->
+
+    <!-- Галерея примеров работ: 8 изображений из папки images,
+         во всю ширину экрана, максимум 1600px -->
+    <div class="gallery">
+      <img src="images/1.png" alt="Пример работы 1">
+      <img src="images/2.png" alt="Пример работы 2">
+      <img src="images/3.png" alt="Пример работы 3">
+      <img src="images/4.png" alt="Пример работы 4">
+      <img src="images/5.png" alt="Пример работы 5">
+      <img src="images/6.png" alt="Пример работы 6">
+      <img src="images/7.png" alt="Пример работы 7">
+      <img src="images/8.png" alt="Пример работы 8">
+    </div>
+
+    <div class="container">
 
       <div class="price-box">
         Цена: 7000 рублей
