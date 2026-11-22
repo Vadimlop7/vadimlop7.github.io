@@ -107,11 +107,14 @@
 
   .card .btn:hover { background: #1f6391; }
 
-  /* Адаптив */
+  /* Адаптив: карточки товаров остаются в строку на всех экранах,
+     слегка уменьшаем картинку и внутренние отступы для компактности */
   @media (max-width: 480px) {
     .header { flex-direction: column; text-align: center; }
-    .card { flex-direction: column; text-align: center; }
-    .card img { width: 100px; height: 100px; }
+    .card { padding: 14px; gap: 12px; }
+    .card img { width: 70px; height: 70px; }
+    .card .price { margin-bottom: 8px; }
+    .card .btn { padding: 8px 18px; }
   }
 </style>
 </head>
