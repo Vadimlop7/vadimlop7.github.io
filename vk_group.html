@@ -224,12 +224,28 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
       </div>
 
       <a class="cta-button" href="https://kwork.ru/smm/55422169/prodvizhenie-na-ozon-i-vb-cherez-gruppu-v-vk-vneshniy-trafik-reklama" target="_blank"
-   onclick="_tmr.push({ type: 'reachGoal', id: 3818642, goal: 'kwork_click' });">
-   Перейти на Кворк.ру и заказать
-</a>
+         onclick="sendGoalSafe('kwork_click', this)">
+         Перейти на Кворк.ру и заказать
+      </a>
 
       <a class="back-button" href="index.html">Назад на главную</a>
 
     </div>
+
+    <script>
+      function sendGoalSafe(goal, link) {
+        // Если счётчик уже есть — отправляем событие сразу
+        if (window._tmr && Array.isArray(window._tmr)) {
+          _tmr.push({ type: 'reachGoal', id: 3818642, goal: goal });
+        }
+        // Небольшая задержка на случай, если скрипт ещё грузится
+        setTimeout(function() {
+          if (window._tmr && Array.isArray(window._tmr)) {
+            _tmr.push({ type: 'reachGoal', id: 3818642, goal: goal });
+          }
+        }, 300);
+        // Переход по ссылке произойдёт как обычно через href
+      }
+    </script>
   </body>
 </html>
