@@ -2,24 +2,25 @@
 <html lang="ru">
   <head>
 
-  
-<script type="text/javascript">
-var _tmr = window._tmr || (window._tmr = []);
-_tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
-(function (d, w, id) {
-  if (d.getElementById(id)) return;
-  var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
-  ts.src = "https://top-fwz1.mail.ru/js/code.js";
-  var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-  if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
-})(document, window, "tmr-code");
-</script>
-<noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3818642;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
-
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Группа вашего магазина(бренда) в VK и внешний трафик на товары</title>
+
+    <!-- Счётчик Top.Mail.Ru (пиксель VK Рекламы) -->
+    <script type="text/javascript">
+      var _tmr = window._tmr || (window._tmr = []);
+      _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
+      (function (d, w, id) {
+        if (d.getElementById(id)) return;
+        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+        ts.src = "https://top-fwz1.mail.ru/js/code.js";
+        // Флаг: счётчик реально загрузился (не просто создан тег)
+        ts.onload = function () { w._tmrLoaded = true; };
+        var f = function () { var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s); };
+        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+      })(document, window, "tmr-code");
+    </script>
+    <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3818642;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
 
     <style>
       * { box-sizing: border-box; }
@@ -153,7 +154,7 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
     <div class="container">
 
       <h1>Фриланс — услуга</h1>
-      <p class="subtitle">Группа вашего магазина(бренда) в VK и внешний трафик на товары</p>
+      <p class="subtitle">Группа вашего1 магазина(бренда) в VK и внешний трафик на товары</p>
 
       <h2>Что это?</h2>
       <p>
@@ -223,8 +224,9 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
         Цена: 7000 рублей
       </div>
 
-      <a class="cta-button" href="https://kwork.ru/smm/55422169/prodvizhenie-na-ozon-i-vb-cherez-gruppu-v-vk-vneshniy-trafik-reklama" target="_blank"
-         onclick="sendGoalSafe('kwork_click', this)">
+      <a class="cta-button" id="kworkBtn"
+         href="https://kwork.ru/smm/55422169/prodvizhenie-na-ozon-i-vb-cherez-gruppu-v-vk-vneshniy-trafik-reklama"
+         target="_blank">
          Перейти на Кворк.ру и заказать
       </a>
 
@@ -233,19 +235,69 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
     </div>
 
     <script>
-      function sendGoalSafe(goal, link) {
-        // Если счётчик уже есть — отправляем событие сразу
-        if (window._tmr && Array.isArray(window._tmr)) {
-          _tmr.push({ type: 'reachGoal', id: 3818642, goal: goal });
+      (function () {
+        var COUNTER_ID = 3818642;
+        var GOAL = 'kwork_click';
+        var sent = false;
+
+        // Отправка события: первый вызов рабочий, повторные игнорируем
+        function sendGoal() {
+          if (sent) return;
+          sent = true;
+          try {
+            window._tmr = window._tmr || [];
+            window._tmr.push({ type: 'reachGoal', id: COUNTER_ID, goal: GOAL });
+          } catch (e) { /* ничего не ломаем */ }
         }
-        // Небольшая задержка на случай, если скрипт ещё грузится
-        setTimeout(function() {
-          if (window._tmr && Array.isArray(window._tmr)) {
-            _tmr.push({ type: 'reachGoal', id: 3818642, goal: goal });
-          }
-        }, 300);
-        // Переход по ссылке произойдёт как обычно через href
-      }
+
+        // Ждём, пока счётчик реально загрузится, максимум maxWait мс
+        function whenCounterReady(maxWait, callback) {
+          var waited = 0;
+          var step = 100;
+          (function tick() {
+            if (window._tmrLoaded || waited >= maxWait) {
+              callback();
+            } else {
+              waited += step;
+              setTimeout(tick, step);
+            }
+          })();
+        }
+
+        var btn = document.getElementById('kworkBtn');
+
+        if (btn) {
+          btn.addEventListener('click', function (e) {
+            var url = btn.href;
+
+            // Если счётчик ещё грузится — на телефоне так бывает часто —
+            // прерываем мгновенный переход и даём ему время уйти
+            if (!window._tmrLoaded) {
+              e.preventDefault();
+              sendGoal();
+              whenCounterReady(1500, function () {
+                sendGoal(); // страховка: если первый push ушёл в очередь до загрузки — повторим
+                var win = window.open(url, '_blank');
+                if (!win) {
+                  // Браузер заблокировал popup — открываем в той же вкладке
+                  window.location.href = url;
+                }
+              });
+            } else {
+              // Счётчик загружен: отправляем и чуть-чуть придерживаем переход,
+              // чтобы запрос на событие успел уйти из мобильного браузера
+              e.preventDefault();
+              sendGoal();
+              setTimeout(function () {
+                var win = window.open(url, '_blank');
+                if (!win) {
+                  window.location.href = url;
+                }
+              }, 250);
+            }
+          });
+        }
+      })();
     </script>
   </body>
 </html>
