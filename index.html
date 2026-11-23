@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
 
-
 <script type="text/javascript">
 var _tmr = window._tmr || (window._tmr = []);
 _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
@@ -15,7 +14,6 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
 })(document, window, "tmr-code");
 </script>
 <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3818642;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
-
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,9 +57,26 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
     line-height: 1.3;
   }
 
+  /* Обёртка для карточек: сетка по 2 в ряд на широких экранах */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr; /* по умолчанию — одна колонка */
+    gap: 20px;
+    max-width: 1160px; /* 2 карточки по 560px + отступ между ними */
+    margin: 0 auto;
+  }
+
+  /* На экранах шире 1000px — карточки по 2 в линию, по центру */
+  @media (min-width: 1001px) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+      justify-content: center;
+    }
+  }
+
   .card {
     display: flex;
-    align-items: center;
+    align-items: stretch; /* контент растягивается на всю высоту карточки */
     gap: 16px;
     max-width: 560px;
     width: 100%;
@@ -69,6 +84,13 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  /* В сетке на широких экранах карточки тянутся на одинаковую высоту */
+  @media (min-width: 1001px) {
+    .card {
+      margin-bottom: 0; /* вертикальный отступ даёт gap сетки */
+    }
   }
 
   /* Светло-синий, прозрачность 40% */
@@ -89,9 +111,16 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
     object-fit: cover;
     border-radius: 8px;
     flex-shrink: 0;
+    align-self: flex-start; /* картинка не тянется вместе с карточкой */
   }
 
-  .card-content { flex: 1; min-width: 0; }
+  /* Контент карточки — колонка, чтобы кнопка прижималась к низу */
+  .card-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
 
   .card h2 {
     margin: 0 0 6px;
@@ -109,7 +138,9 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
   .card--yellow .price { color: #8a6d1a; }
 
   .card .btn {
-    display: inline-block;
+    margin-top: auto;   /* прижимает кнопку к нижнему краю карточки */
+    width: 160px;       /* единая ширина у всех кнопок */
+    text-align: center;
     padding: 10px 22px;
     border: none;
     border-radius: 8px;
@@ -124,14 +155,13 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
 
   .card .btn:hover { background: #1f6391; }
 
-  /* Адаптив: карточки товаров остаются в строку на всех экранах,
-     слегка уменьшаем картинку и внутренние отступы для компактности */
+  /* Адаптив: на узких экранах слегка уменьшаем картинку и внутренние отступы */
   @media (max-width: 480px) {
     .header { flex-direction: column; text-align: center; }
     .card { padding: 14px; gap: 12px; }
     .card img { width: 70px; height: 70px; }
     .card .price { margin-bottom: 8px; }
-    .card .btn { padding: 8px 18px; }
+    .card .btn { width: 140px; padding: 8px 18px; }
   }
 </style>
 </head>
@@ -142,21 +172,23 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
   <h1>Специалист по интернет-торговле Вадим Лопатин. Фриланс-услуги для роста продаж на маркетплейсах:</h1>
 </header>
 
-<div class="card card--blue">
-  <img src="images/vkq.jpg" alt="Изображение товара">
-  <div class="card-content">
-    <h2>Группа вашего магазина(бренда) в VK и внешний трафик на товары</h2>
-    <p class="price">Цена: 7000 рублей</p>
-    <a class="btn" href="vk_group.html">Подробнее</a>
+<div class="cards">
+  <div class="card card--blue">
+    <img src="images/vkq.jpg" alt="Изображение товара">
+    <div class="card-content">
+      <h2>Группа вашего магазина(бренда) в VK и внешний трафик на товары</h2>
+      <p class="price">Цена: 7000 рублей</p>
+      <a class="btn" href="vk_group.html">Подробнее</a>
+    </div>
   </div>
-</div>
 
-<div class="card card--yellow">
-  <img src="images/yt.png" alt="Изображение товара">
-  <div class="card-content">
-    <h2>УТП для товаров на Озон и ВБ</h2>
-    <p class="price">Цена: 500 рублей</p>
-    <a class="btn" href="utp.html">Подробнее</a>
+  <div class="card card--yellow">
+    <img src="images/yt.png" alt="Изображение товара">
+    <div class="card-content">
+      <h2>УТП для товаров на Озон и ВБ</h2>
+      <p class="price">Цена: 500 рублей</p>
+      <a class="btn" href="utp.html">Подробнее</a>
+    </div>
   </div>
 </div>
 
