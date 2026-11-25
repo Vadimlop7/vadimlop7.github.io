@@ -140,6 +140,63 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
         margin-top: 36px;
         text-align: center;
       }
+
+      /* НА КОМПЬЮТЕРЕ: ширина блока, шрифты и кнопки на 50% больше */
+      @media (min-width: 1001px) {
+        .container {
+          max-width: 960px;      /* 640px × 1.5 */
+          padding: 36px 30px;    /* внутренние отступы тоже × 1.5 */
+        }
+
+        h1 {
+          font-size: 39px;       /* 26px × 1.5 */
+        }
+
+        .subtitle {
+          font-size: 25px;       /* 17px × 1.5 */
+          margin: 0 0 36px;
+        }
+
+        h2 {
+          font-size: 30px;       /* 20px × 1.5 */
+          margin: 42px 0 15px;
+        }
+
+        p {
+          font-size: 22px;       /* 15px × 1.5 */
+        }
+
+        ul {
+          padding-left: 33px;    /* 22px × 1.5 */
+        }
+
+        li { margin-bottom: 9px; }
+
+        .price-box {
+          padding: 24px 30px;    /* 16px 20px × 1.5 */
+          margin: 30px 0;
+          font-size: 27px;       /* 18px × 1.5 */
+          border-radius: 15px;
+        }
+
+        .cta-button {
+          max-width: 540px;      /* 360px × 1.5 */
+          margin: 36px auto;
+          padding: 22px 30px;    /* 15px 20px × 1.5 */
+          font-size: 25px;       /* 17px × 1.5 */
+          border-radius: 15px;
+        }
+
+        .back-button {
+          max-width: 390px;      /* 260px × 1.5 */
+          padding: 15px 24px;    /* 10px 16px × 1.5 */
+          font-size: 21px;       /* 14px × 1.5 */
+        }
+
+        .note {
+          font-size: 21px;       /* 14px × 1.5 */
+        }
+      }
     </style>
   </head>
   <body>
