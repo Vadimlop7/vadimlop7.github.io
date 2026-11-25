@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 
@@ -5,11 +6,11 @@
 var _tmr = window._tmr || (window._tmr = []);
 _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
 (function (d, w, id) {
-if (d.getElementById(id)) return;
-var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
-ts.src = "https://top-fwz1.mail.ru/js/code.js";
-var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+  if (d.getElementById(id)) return;
+  var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+  ts.src = "https://top-fwz1.mail.ru/js/code.js";
+  var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+  if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
 })(document, window, "tmr-code");
 </script>
 <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3818642;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
@@ -18,195 +19,203 @@ if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, fal
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Специалист по интернет-торговле — Вадим Лопатин</title>
 <style>
-* { box-sizing: border-box; }
+  * { box-sizing: border-box; }
 
-/* Фон всей страницы — плитка одной картинки */
-body {
-font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-margin: 0;
-padding: 20px;
-background: #eef3f7 url('https://picsum.photos/300/300') repeat;
-background-size: 300px 300px; /* размер одной плитки */
-}
+  /* Фон всей страницы: картинка растянута во всю ширину экрана
+     и повторяется вниз, одна за другой */
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: url('images/bg1.jpg') repeat-y center top;
+    background-size: 100% auto; /* ширина = ширина экрана, высота по пропорциям */
+  }
 
-/* Шапка страницы */
-.header {
-display: flex;
-align-items: center;
-gap: 20px;
-max-width: 560px;
-margin: 0 auto 60px; /* увеличенный отступ снизу: было 30px */
-padding: 20px;
-background: rgba(255, 255, 255, 0.85);
-border-radius: 12px;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
+  /* Картинка 2 — для экранов шириной 1000px и меньше */
+  @media (max-width: 1000px) {
+    body {
+      background-image: url('images/bg2.jpg');
+    }
+  }
 
-.header img {
-width: 110px;
-height: 110px;
-object-fit: cover;
-border-radius: 10px;
-flex-shrink: 0;
-}
+  /* Шапка страницы */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 560px;
+    margin: 0 auto 60px; /* увеличенный отступ снизу: было 30px */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
 
-.header h1 {
-margin: 0;
-font-size: clamp(1.1rem, 3vw, 1.5rem);
-line-height: 1.3;
-}
+  .header img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
 
-/* Обёртка для карточек: сетка по 2 в ряд на широких экранах */
-.cards {
-display: grid;
-grid-template-columns: 1fr; /* по умолчанию — одна колонка */
-gap: 20px;
-max-width: 1160px; /* 2 карточки по 560px + отступ между ними */
-margin: 0 auto;
-}
+  .header h1 {
+    margin: 0;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    line-height: 1.3;
+  }
 
-/* На экранах шире 1000px — карточки по 2 в линию, по центру */
-@media (min-width: 1001px) {
-.cards {
-grid-template-columns: repeat(2, 1fr);
-justify-content: center;
-}
-}
+  /* Обёртка для карточек: сетка по 2 в ряд на широких экранах */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr; /* по умолчанию — одна колонка */
+    gap: 20px;
+    max-width: 1160px; /* 2 карточки по 560px + отступ между ними */
+    margin: 0 auto;
+  }
 
-.card {
-display: flex;
-align-items: stretch; /* контент растягивается на всю высоту карточки */
-gap: 16px;
-max-width: 560px;
-width: 100%;
-margin: 0 auto 20px;
-padding: 20px;
-border-radius: 12px;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
+  /* На экранах шире 1000px — карточки по 2 в линию, по центру */
+  @media (min-width: 1001px) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+      justify-content: center;
+    }
+  }
 
-/* В сетке на широких экранах карточки тянутся на одинаковую высоту */
-@media (min-width: 1001px) {
-.card {
-margin-bottom: 0; /* вертикальный отступ даёт gap сетки */
-}
-}
+  .card {
+    display: flex;
+    align-items: stretch; /* контент растягивается на всю высоту карточки */
+    gap: 16px;
+    max-width: 560px;
+    width: 100%;
+    margin: 0 auto 20px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
 
-/* Светло-синий, прозрачность 40% */
-.card--blue {
-border: 1px solid #b3cde0;
-background: rgba(173, 216, 230, 0.4);
-}
+  /* В сетке на широких экранах карточки тянутся на одинаковую высоту */
+  @media (min-width: 1001px) {
+    .card {
+      margin-bottom: 0; /* вертикальный отступ даёт gap сетки */
+    }
+  }
 
-/* Светло-жёлтый, прозрачность 40% */
-.card--yellow {
-border: 1px solid #e6d78a;
-background: rgba(255, 243, 170, 0.4);
-}
+  /* Светло-синий, прозрачность 40% */
+  .card--blue {
+    border: 1px solid #b3cde0;
+    background: rgba(173, 216, 230, 0.4);
+  }
 
-.card img {
-width: 90px;
-height: 90px;
-object-fit: cover;
-border-radius: 8px;
-flex-shrink: 0;
-align-self: flex-start; /* картинка не тянется вместе с карточкой */
-}
+  /* Светло-жёлтый, прозрачность 40% */
+  .card--yellow {
+    border: 1px solid #e6d78a;
+    background: rgba(255, 243, 170, 0.4);
+  }
 
-/* Контент карточки — колонка, чтобы кнопка прижималась к низу */
-.card-content {
-flex: 1;
-min-width: 0;
-display: flex;
-flex-direction: column;
-}
+  .card img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+    align-self: flex-start; /* картинка не тянется вместе с карточкой */
+  }
 
-.card h2 {
-margin: 0 0 6px;
-font-size: clamp(1rem, 2.5vw, 1.25rem);
-line-height: 1.3;
-}
+  /* Контент карточки — колонка, чтобы кнопка прижималась к низу */
+  .card-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
 
-.card .price {
-margin: 0 0 12px;
-font-size: 1.05rem;
-font-weight: 600;
-}
+  .card h2 {
+    margin: 0 0 6px;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    line-height: 1.3;
+  }
 
-.card--blue .price { color: #1a5276; }
-.card--yellow .price { color: #8a6d1a; }
+  .card .price {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
 
-.card .btn {
-margin-top: auto; /* прижимает кнопку к нижнему краю карточки */
-width: 160px; /* единая ширина у всех кнопок */
-text-align: center;
-padding: 10px 22px;
-border: none;
-border-radius: 8px;
-color: #fff;
-font-size: 0.95rem;
-text-decoration: none; /* убирает подчёркивание у ссылки-кнопки */
-cursor: pointer;
-transition: background 0.2s;
-/* Единая синяя кнопка для обеих карточек */
-background: #2980b9;
-}
+  .card--blue .price { color: #1a5276; }
+  .card--yellow .price { color: #8a6d1a; }
 
-.card .btn:hover { background: #1f6391; }
+  .card .btn {
+    margin-top: auto;   /* прижимает кнопку к нижнему краю карточки */
+    width: 160px;       /* единая ширина у всех кнопок */
+    text-align: center;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    text-decoration: none; /* убирает подчёркивание у ссылки-кнопки */
+    cursor: pointer;
+    transition: background 0.2s;
+    /* Единая синяя кнопка для обеих карточек */
+    background: #2980b9;
+  }
 
-/* Адаптив: на узких экранах слегка уменьшаем картинку и внутренние отступы */
-@media (max-width: 480px) {
-.header { flex-direction: column; text-align: center; }
-.card { padding: 14px; gap: 12px; }
-.card img { width: 70px; height: 70px; }
-.card .price { margin-bottom: 8px; }
-.card .btn { width: 140px; padding: 8px 18px; }
-}
+  .card .btn:hover { background: #1f6391; }
+
+  /* Адаптив: на узких экранах слегка уменьшаем картинку и внутренние отступы */
+  @media (max-width: 480px) {
+    .header { flex-direction: column; text-align: center; }
+    .card { padding: 14px; gap: 12px; }
+    .card img { width: 70px; height: 70px; }
+    .card .price { margin-bottom: 8px; }
+    .card .btn { width: 140px; padding: 8px 18px; }
+  }
 </style>
 </head>
 <body>
 
 <header class="header">
-<img src="images/me.png" alt="Вадим Лопатин">
-<h1>Специалист по интернет-торговле Вадим Лопатин(8 лет в сфере). Фриланс-услуги для роста продаж на маркетплейсах:</h1>
+  <img src="images/me.png" alt="Вадим Лопатин">
+  <h1>Специалист по интернет-торговле Вадим Лопатин(8 лет в сфере). Фриланс-услуги для роста продаж на маркетплейсах:</h1>
 </header>
 
 <div class="cards">
-<div class="card card--blue">
-<img src="images/vkq.jpg" alt="Изображение товара">
-<div class="card-content">
-<h2>Группа вашего магазина(бренда) в VK и внешний трафик на товары</h2>
-<p class="price">Цена: 7000 рублей</p>
-<a class="btn" href="vk_group.html">Подробнее</a>
-</div>
-</div>
+  <div class="card card--blue">
+    <img src="images/vkq.jpg" alt="Изображение товара">
+    <div class="card-content">
+      <h2>Группа вашего магазина(бренда) в VK и внешний трафик на товары</h2>
+      <p class="price">Цена: 7000 рублей</p>
+      <a class="btn" href="vk_group.html">Подробнее</a>
+    </div>
+  </div>
 
-<div class="card card--yellow">
-<img src="images/yt.png" alt="Изображение товара">
-<div class="card-content">
-<h2>УТП для товаров на Озон и ВБ</h2>
-<p class="price">Цена: 500 рублей</p>
-<a class="btn" href="utp.html">Подробнее</a>
-</div>
-</div>
+  <div class="card card--yellow">
+    <img src="images/yt.png" alt="Изображение товара">
+    <div class="card-content">
+      <h2>УТП для товаров на Озон и ВБ</h2>
+      <p class="price">Цена: 500 рублей</p>
+      <a class="btn" href="utp.html">Подробнее</a>
+    </div>
+  </div>
 
-<div class="card card--blue">
-<img src="images/keywords.png" alt="Сбор ключевых слов">
-<div class="card-content">
-<h2>Ключевые слова товара Озон, ВБ, магазина</h2>
-<p class="price">Цена: 500 рублей</p>
-<a class="btn" href="keywords_page.html">Подробнее</a>
-</div>
-</div>
+  <div class="card card--blue">
+    <img src="images/keywords.png" alt="Сбор ключевых слов">
+    <div class="card-content">
+      <h2>Ключевые слова товара Озон, ВБ, магазина</h2>
+      <p class="price">Цена: 500 рублей</p>
+      <a class="btn" href="keywords_page.html">Подробнее</a>
+    </div>
+  </div>
 
-<div class="card card--yellow">
-<img src="images/reviews.png" alt="Анализ отзывов">
-<div class="card-content">
-<h2>Анализ отзывов на ВБ для снижения негатива</h2>
-<p class="price">Цена: 500 рублей</p>
-<a class="btn" href="reviews_page.html">Подробнее</a>
-</div>
-</div>
+  <div class="card card--yellow">
+    <img src="images/reviews.png" alt="Анализ отзывов">
+    <div class="card-content">
+      <h2>Анализ отзывов на ВБ для снижения негатива</h2>
+      <p class="price">Цена: 500 рублей</p>
+      <a class="btn" href="reviews_page.html">Подробнее</a>
+    </div>
+  </div>
 
 </div>
 
