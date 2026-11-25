@@ -24,13 +24,23 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
     <style>
       * { box-sizing: border-box; }
 
+      /* Фон всей страницы: картинка растянута во всю ширину экрана
+         и повторяется вниз, одна за другой */
       body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f5f7fa;
         color: #333;
         line-height: 1.5;
+        background: url('images/bg1.jpg') repeat-y center top;
+        background-size: 100% auto; /* ширина = ширина экрана, высота по пропорциям */
+      }
+
+      /* Картинка 2 — для экранов шириной 1000px и меньше */
+      @media (max-width: 1000px) {
+        body {
+          background-image: url('images/bg2.jpg');
+        }
       }
 
       .container {
@@ -194,7 +204,7 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
         <li>
           Рекламная кампания в VK рекламе, включает:
           <ul>
-            <li>5 объявлений (дизайн, рекламный текст)</li>
+            <li>5 объявлений (дesign, рекламный текст)</li>
             <li>100+ ключевых слов</li>
             <li>30+ групп для РК</li>
             <li>Инструкция для аналитики внешнего трафика</li>
