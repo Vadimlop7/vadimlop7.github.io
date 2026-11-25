@@ -21,26 +21,32 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
 <style>
   * { box-sizing: border-box; }
 
+  /* Страница не прокручивается сама — прокрутку берёт на себя контейнер .page */
+  html, body {
+    height: 100%;
+  }
+
   body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     margin: 0;
-    padding: 20px;
-  }
-
-  /* Подложка с фоновым изображением */
-  .bg {
-    position: fixed;
-    inset: 0;             /* top: 0; right: 0; bottom: 0; left: 0 — одним свойством */
-    z-index: -1;
+    overflow: hidden; /* запрещаем прокрутку на уровне самой страницы */
     background: url('images/bg1.jpg') no-repeat center center;
     background-size: cover; /* растягиваем на весь экран без искажений */
   }
 
   /* Картинка 2 — для экранов шириной 1000px и меньше */
   @media (max-width: 1000px) {
-    .bg {
+    body {
       background-image: url('images/bg2.jpg');
     }
+  }
+
+  /* Прокручиваемый контейнер: внутри него едет шапка и карточки */
+  .page {
+    height: 100%;
+    overflow-y: auto;
+    padding: 20px;
+    -webkit-overflow-scrolling: touch; /* плавная прокрутка на iPhone */
   }
 
   /* Шапка страницы */
@@ -77,6 +83,7 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
     gap: 20px;
     max-width: 1160px;
     margin: 0 auto;
+    padding-bottom: 20px;
   }
 
   /* На экранах шире 1000px — карточки по 2 в линию, по центру */
@@ -93,16 +100,10 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
     gap: 16px;
     max-width: 560px;
     width: 100%;
-    margin: 0 auto 20px;
+    margin: 0 auto;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  }
-
-  @media (min-width: 1001px) {
-    .card {
-      margin-bottom: 0;
-    }
   }
 
   /* Светло-синий, прозрачность 40% */
@@ -177,48 +178,50 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
 </head>
 <body>
 
-<div class="bg"></div>
+<div class="page">
 
-<header class="header">
-  <img src="images/me.png" alt="Вадим Лопатин">
-  <h1>Специалист по интернет-торговле Вадим Лопатин(8 лет в сфере). Фриланс-услуги для роста продаж на маркетплейсах:</h1>
-</header>
+  <header class="header">
+    <img src="images/me.png" alt="Вадим Лопатин">
+    <h1>Специалист по интернет-торговле Вадим Лопатин(8 лет в сфере). Фриланс-услуги для роста продаж на маркетплейсах:</h1>
+  </header>
 
-<div class="cards">
-  <div class="card card--blue">
-    <img src="images/vkq.jpg" alt="Изображение товара">
-    <div class="card-content">
-      <h2>Группа вашего магазина(бренда) в VK и внешний трафик на товары</h2>
-      <p class="price">Цена: 7000 рублей</p>
-      <a class="btn" href="vk_group.html">Подробнее</a>
+  <div class="cards">
+    <div class="card card--blue">
+      <img src="images/vkq.jpg" alt="Изображение товара">
+      <div class="card-content">
+        <h2>Группа вашего магазина(бренда) в VK и внешний трафик на товары</h2>
+        <p class="price">Цена: 7000 рублей</p>
+        <a class="btn" href="vk_group.html">Подробнее</a>
+      </div>
     </div>
-  </div>
 
-  <div class="card card--yellow">
-    <img src="images/yt.png" alt="Изображение товара">
-    <div class="card-content">
-      <h2>УТП для товаров на Озон и ВБ</h2>
-      <p class="price">Цена: 500 рублей</p>
-      <a class="btn" href="utp.html">Подробнее</a>
+    <div class="card card--yellow">
+      <img src="images/yt.png" alt="Изображение товара">
+      <div class="card-content">
+        <h2>УТП для товаров на Озон и ВБ</h2>
+        <p class="price">Цена: 500 рублей</p>
+        <a class="btn" href="utp.html">Подробнее</a>
+      </div>
     </div>
-  </div>
 
-  <div class="card card--blue">
-    <img src="images/keywords.png" alt="Сбор ключевых слов">
-    <div class="card-content">
-      <h2>Ключевые слова товара Озон, ВБ, магазина</h2>
-      <p class="price">Цена: 500 рублей</p>
-      <a class="btn" href="keywords_page.html">Подробнее</a>
+    <div class="card card--blue">
+      <img src="images/keywords.png" alt="Сбор ключевых слов">
+      <div class="card-content">
+        <h2>Ключевые слова товара Озон, ВБ, магазина</h2>
+        <p class="price">Цена: 500 рублей</p>
+        <a class="btn" href="keywords_page.html">Подробнее</a>
+      </div>
     </div>
-  </div>
 
-  <div class="card card--yellow">
-    <img src="images/reviews.png" alt="Анализ отзывов">
-    <div class="card-content">
-      <h2>Анализ отзывов на ВБ для снижения негатива</h2>
-      <p class="price">Цена: 500 рублей</p>
-      <a class="btn" href="reviews_page.html">Подробнее</a>
+    <div class="card card--yellow">
+      <img src="images/reviews.png" alt="Анализ отзывов">
+      <div class="card-content">
+        <h2>Анализ отзывов на ВБ для снижения негатива</h2>
+        <p class="price">Цена: 500 рублей</p>
+        <a class="btn" href="reviews_page.html">Подробнее</a>
+      </div>
     </div>
+
   </div>
 
 </div>
