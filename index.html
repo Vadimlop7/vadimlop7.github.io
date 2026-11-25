@@ -23,7 +23,9 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
 
   /* Страница не прокручивается сама — прокрутку берёт на себя контейнер .page */
   html, body {
-    height: 100%;
+    height: 100%;      /* запасной вариант для старых браузеров */
+    height: 100dvh;    /* высота видимой области без учёта прячущейся адресной строки */
+    overscroll-behavior: none; /* отключает «резинку» на краях прокрутки */
   }
 
   body {
@@ -46,6 +48,8 @@ _tmr.push({id: "3818642", type: "pageView", start: (new Date()).getTime()});
     height: 100%;
     overflow-y: auto;
     padding: 20px;
+    overscroll-behavior: none; /* запрещает оттягивание и pull-to-refresh */
+    touch-action: pan-x pan-y; /* браузер не перехватывает жесты на спецэффекты */
     -webkit-overflow-scrolling: touch; /* плавная прокрутка на iPhone */
   }
 
